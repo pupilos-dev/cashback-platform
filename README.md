@@ -1,24 +1,52 @@
-# README
+# CashBack Platform
+This is a web platform that displays offers to users, offers created by administrators,
+Users are able to choose the best offer and shop in order to receive cashback.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### Ruby version
+```
+2.7.1
+```
 
-Things you may want to cover:
+### Rails version
+```
+6.0.3
+```
 
-* Ruby version
+### Configuration
+```shell
+bundle install
+yarn install
+```
 
-* System dependencies
+### Database creation
+```shell
+bundle exec rails db:setup
+or
+bundle exec rails db:create
+bundle exec rails db:migrate
+```
 
-* Configuration
+### How to run the test suite
+```shell
+bundle exec rspec
+```
 
-* Database creation
+### Run the server
+```shell
+bundle exec rails server
+```
 
-* Database initialization
+## Documentation
 
-* How to run the test suite
+An offer has two states: enabled and disabled:
+- `created`: disabled.
+- `current time >= starts_at`: enabled.
+- `current time =< ends_at`: disabled.
+- `end_at` is blank: disabled.
+- `disabled button` active: disabled.
+An offer has three actions:
+- disable/enable
+- edit
+- destroy
+Only enabled offers are displayed, premium appear on top.
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
