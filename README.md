@@ -44,9 +44,11 @@ An offer has two states: enabled and disabled:
 - `current time =< ends_at`: disabled.
 - `end_at` is blank: disabled.
 - `disabled button` active: disabled.
+
 An offer has three actions:
 - disable/enable
 - edit
 - destroy
+
 Only enabled offers are displayed, premium appear on top.
 
