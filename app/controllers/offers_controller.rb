@@ -51,7 +51,7 @@ class OffersController < ApplicationController
   private
 
   def ensure_admin_user!
-    redirect_to root_path unless current_member.admin?
+    redirect_to root_path if current_member.nil? || !current_member.admin?
   end
 
   def set_offer
