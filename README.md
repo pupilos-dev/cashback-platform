@@ -54,7 +54,7 @@ Only enabled offers are displayed, premium appear on top.
 
 How to create admin member?
 
-Create your member account and in terminal:
+Create your member account and execute this in terminal:
 
 ```shell
 a = Member.find(:id)

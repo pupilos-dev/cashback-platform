@@ -1,6 +1,9 @@
 <h1>Cashback Platform</h1>
 
 <% if current_member %>
+  <button class="btn btn-primary">
+    <%= link_to 'Create Offers', offers_path %>
+  </button>
 
   <button class="btn btn-danger">
     <%= link_to 'Sign out', destroy_member_session_path, method: :delete %>

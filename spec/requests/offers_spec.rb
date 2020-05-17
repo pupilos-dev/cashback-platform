@@ -2,20 +2,15 @@
 
 RSpec.describe "/offers", type: :request do
   let(:valid_attributes) {
-    FactoryBot.attributes_for(:offer)
+    FactoryBot.attributes_for(:offer, member_id: admin.id)
   }
 
   let(:valid_offer) {
-    FactoryBot.create(:offer)
+    FactoryBot.create(:offer, member_id: admin.id)
   }
 
   let(:invalid_attributes) do
-    {:advertiser_name=>"Idella Gutkowski",
-     :url=>"www.lemoney.com/",
-     :description=>"Description",
-     :starts_at=>"2020-05-16",
-     :ends_at=>"2020-05-16",
-     :premium=>false}
+    FactoryBot.attributes_for(:offer, url: nil, member_id: admin.id)
   end
 
   let(:admin) { FactoryBot.create(:member) }
@@ -69,6 +64,7 @@ RSpec.describe "/offers", type: :request do
 
   describe "PATCH /update" do
     context "with valid parameters" do
+      let(:offer) { FactoryBot.create(:offer, member_id: admin.id) }
       let(:new_attributes) {
         {:advertiser_name=>"Idella Gutkowski",
          :url=>"https://www.lemoney.com/",
@@ -80,16 +76,14 @@ RSpec.describe "/offers", type: :request do
       }
 
       it "return correct http response" do
-        offer = Offer.create! valid_attributes
         patch offer_url(offer), params: { offer: new_attributes }
-        offer.reload
         expect(response).to have_http_status(302)
       end
     end
 
     context "with invalid parameters" do
+      let(:offer) { FactoryBot.create(:offer, member_id: admin.id) }
       it "renders a successful response (i.e. to display the 'edit' template)" do
-        offer = Offer.create! valid_attributes
         patch offer_url(offer), params: { offer: invalid_attributes }
         expect(response).to be_successful
       end
@@ -97,15 +91,15 @@ RSpec.describe "/offers", type: :request do
   end
 
   describe "DELETE /destroy" do
+    let!(:offer) { FactoryBot.create(:offer, member_id: admin.id) }
+
     it "destroys the requested offer" do
-      offer = Offer.create! valid_attributes
       expect {
         delete offer_url(offer)
       }.to change(Offer, :count).by(-1)
     end
 
     it "redirects to the offers list" do
-      offer = Offer.create! valid_attributes
       delete offer_url(offer)
       expect(response).to redirect_to(offers_url)
     end

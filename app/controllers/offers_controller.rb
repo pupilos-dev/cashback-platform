@@ -19,7 +19,7 @@ class OffersController < ApplicationController
 
     respond_to do |format|
       if @offer.save
-        format.html { redirect_to({ action: :index }, notice: 'Offer was successfully created.') }
+        format.html { redirect_to(offers_path, notice: 'Offer was successfully created.') }
         format.json { render :index, status: :created, location: @offer }
       else
         format.html { render :new }
@@ -29,9 +29,11 @@ class OffersController < ApplicationController
   end
 
   def update
+    @offer = Offer.find(params[:id])
+
     respond_to do |format|
       if @offer.update(offer_params)
-        format.html { redirect_to({ action: :index }, notice: 'Offer was successfully updated.') }
+        format.html { redirect_to(offers_path, notice: 'Offer was successfully updated.') }
         format.json { render :index, status: :ok, location: @offer }
       else
         format.html { render :edit }
@@ -59,6 +61,6 @@ class OffersController < ApplicationController
   end
 
   def offer_params
-    params.require(:offer).permit(:advertiser_name, :url, :description, :starts_at, :ends_at, :premium)
+    params.require(:offer).permit(:advertiser_name, :url, :description, :starts_at, :ends_at, :premium, :enabled)
   end
 end
