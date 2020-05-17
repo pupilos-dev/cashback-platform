@@ -24,7 +24,6 @@
         <td><%= offer.starts_at %></td>
         <td><%= offer.ends_at %></td>
         <td><%= offer.premium %></td>
-        <td><%#= link_to 'Show', offer %></td>
         <td><%= offer.state == true ? 'disable' : 'enable' %></td>
         <td><%= link_to 'Edit', edit_offer_path(offer) %></td>
         <td><%= link_to 'Destroy', offer,
