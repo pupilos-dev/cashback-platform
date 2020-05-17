@@ -3,10 +3,10 @@ FactoryBot.define do
     advertiser_name { FFaker::Name.name }
     url { "https://www.lemoney.com/" }
     description { "Description" }
-    state { false }
+    enabled { true }
     starts_at { "2020-05-16" }
     ends_at { "2020-05-16" }
     premium { false }
-    member_id { FactoryBot.create(:member).id }
+    association :member
   end
 end

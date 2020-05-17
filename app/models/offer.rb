@@ -14,4 +14,8 @@ class Offer < ApplicationRecord
   validates :starts_at, presence: true
 
   belongs_to :member, class_name: "Member"
+
+  scope :active, -> { where(enabled: true) }
+  scope :available_offers,
+    -> { active.where("starts_at <= :date", date: Date.current).where("ends_at >= :date", date: Date.current) }
 end

@@ -22,7 +22,12 @@
         <td><%= offer.starts_at %></td>
         <td><%= offer.ends_at %></td>
         <td><%= offer.premium %></td>
-        <td><%= offer.state == true ? 'disable' : 'enable' %></td>
+        <td>
+          <%= form_for offer, method: :put do |f| %>
+            <%= f.hidden_field :enabled, value: !offer.enabled %>
+            <%= f.submit offer.enabled ? 'disable' : 'enable' %>
+          <% end %>
+        </td>
         <td><%= link_to 'Edit', edit_offer_path(offer) %></td>
         <td><%= link_to 'Destroy', offer,
           method: :delete, data: { confirm: 'Are you sure?' } %>

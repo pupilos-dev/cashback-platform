@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(version: 2020_05_17_011509) do
     t.date "starts_at", null: false
     t.date "ends_at"
     t.boolean "premium", default: false
-    t.boolean "state", default: false
+    t.boolean "enabled", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "member_id", null: false
