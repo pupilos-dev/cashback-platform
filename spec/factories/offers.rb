@@ -7,5 +7,6 @@ FactoryBot.define do
     starts_at { "2020-05-16" }
     ends_at { "2020-05-16" }
     premium { false }
+    member_id { FactoryBot.create(:member).id }
   end
 end

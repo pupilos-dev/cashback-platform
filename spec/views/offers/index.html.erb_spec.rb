@@ -8,7 +8,8 @@ RSpec.describe "offers/index", type: :view do
         url: "https://www.lemoney.com/",
         description: "Description",
         premium: false,
-        starts_at: Date.current
+        starts_at: Date.current,
+        member_id: FactoryBot.create(:member).id
       )
     ])
   end

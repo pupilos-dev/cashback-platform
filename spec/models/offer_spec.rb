@@ -13,4 +13,6 @@ RSpec.describe Offer, type: :model do
                 with_long_message('500 characters is the maximum allowed')}
 
   it { is_expected.to validate_presence_of(:starts_at) }
+
+  it { is_expected.to belong_to(:member) }
 end

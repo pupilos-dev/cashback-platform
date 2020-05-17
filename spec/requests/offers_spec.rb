@@ -18,6 +18,9 @@ RSpec.describe "/offers", type: :request do
      :premium=>false}
   end
 
+  let(:admin) { FactoryBot.create(:member) }
+  before { sign_in admin }
+
   describe "GET /index" do
     it "renders a successful response" do
       valid_offer

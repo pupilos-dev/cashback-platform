@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root to: 'pages#home'
+  devise_for :members
   resources :offers
-  root to: 'offers#index'
 end

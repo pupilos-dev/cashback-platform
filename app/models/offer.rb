@@ -13,4 +13,5 @@ class Offer < ApplicationRecord
 
   validates :starts_at, presence: true
 
+  belongs_to :member, class_name: "Member"
 end
