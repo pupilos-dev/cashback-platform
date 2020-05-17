@@ -7,7 +7,8 @@ RSpec.describe "offers/edit", type: :view do
       url: "https://www.lemoney.com/",
       description: FFaker::Name.name,
       premium: false,
-      starts_at: Date.current
+      starts_at: Date.current,
+      member_id: FactoryBot.create(:member).id
     ))
   end
 

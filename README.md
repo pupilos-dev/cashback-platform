@@ -1,6 +1,6 @@
 # CashBack Platform
-This is a web platform that displays offers to users, offers created by administrators,
-Users are able to choose the best offer and shop in order to receive cashback.
+This is a web platform that displays offers to Members, offers created by administrators.
+Members are able to choose the best offer and shop in order to receive cashback.
 
 ### Ruby version
 ```
@@ -51,4 +51,14 @@ An offer has three actions:
 - destroy
 
 Only enabled offers are displayed, premium appear on top.
+
+How to create admin member?
+
+Create your member account and in terminal:
+
+```shell
+a = Member.find(:id)
+a.admin = true
+a.save
+```
 

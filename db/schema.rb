@@ -10,10 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_16_031633) do
+ActiveRecord::Schema.define(version: 2020_05_17_011509) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "members", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.boolean "admin", default: false
+    t.index ["email"], name: "index_members_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_members_on_reset_password_token", unique: true
+  end
 
   create_table "offers", force: :cascade do |t|
     t.string "advertiser_name", null: false
@@ -25,6 +38,9 @@ ActiveRecord::Schema.define(version: 2020_05_16_031633) do
     t.boolean "state", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "member_id", null: false
+    t.index ["member_id"], name: "index_offers_on_member_id"
   end
 
+  add_foreign_key "offers", "members"
 end
