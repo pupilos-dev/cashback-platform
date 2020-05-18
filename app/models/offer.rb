@@ -17,5 +17,5 @@ class Offer < ApplicationRecord
 
   scope :active, -> { where(enabled: true) }
   scope :available_offers,
-    -> { active.where("starts_at <= :date", date: Date.current).where("ends_at >= :date", date: Date.current) }
+    -> { active.where("starts_at <= :date", date: Date.current).where("ends_at >= :date", date: Date.current).order(premium: :desc) }
 end

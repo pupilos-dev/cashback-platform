@@ -24,6 +24,7 @@ bundle exec rails db:setup
 or
 bundle exec rails db:create
 bundle exec rails db:migrate
+bundle exec rails db:seed
 ```
 
 ### How to run the test suite
@@ -50,15 +51,26 @@ An offer has three actions:
 - edit
 - destroy
 
+Member Account
+```
+email: 'lemoney@member.com'
+password: 'password'
+```
+
+Admin Account
+```
+email: 'lemoney@admin.com'
+password: 'password'
+```
+
+Home Page: `localhost:3000`
+
 Only enabled offers are displayed, premium appear on top.
 
-How to create admin member?
+Create Offers: `http://localhost:3000/offers`
 
-Create your member account and execute this in terminal:
+Offers creation dashboard.
 
-```shell
-a = Member.find(:id)
-a.admin = true
-a.save
-```
+Create Member: `http://localhost:3000/members/sign_up`
+Login Member: `http://localhost:3000/members/sign_in`
 
