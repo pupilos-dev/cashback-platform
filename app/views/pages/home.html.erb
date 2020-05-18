@@ -1,22 +1,39 @@
 <h1>Cashback Platform</h1>
 
-<% if current_member %>
-  <button class="btn btn-primary">
-    <%= link_to 'Create Offers', offers_path %>
-  </button>
+<div class="menu">
+  <% if current_member.present? && current_member.admin? %>
+    <button class="btn btn-primary">
+      <%= link_to 'Create Offers', offers_path %>
+    </button>
+  <% end %>
 
-  <button class="btn btn-danger">
-    <%= link_to 'Sign out', destroy_member_session_path, method: :delete %>
-  </button>
+  <% if current_member %>
+    <button class="btn btn-danger">
+      <%= link_to 'Sign out', destroy_member_session_path, method: :delete %>
+    </button>
 
-<% else %>
+  <% else %>
 
-  <button class="btn btn-primary">
-    <%= link_to 'Sign up', new_member_registration_path %>
-  </button>
+    <button class="btn btn-primary">
+      <%= link_to 'Sign up', new_member_registration_path %>
+    </button>
 
-  <button class="btn btn-success">
-    <%= link_to 'Sign in', new_member_session_path %>
-  </button>
+    <button class="btn btn-success">
+      <%= link_to 'Sign in', new_member_session_path %>
+    </button>
 
+  <% end %>
+</div>
+
+</br>
+
+<% @offers.each do |offer| %>
+  <div class="card">
+    <p><%= offer.advertiser_name.titleize %></p>
+    <p><%= offer.description.capitalize %></p>
+    <p class="premium"><%= offer.premium ? 'Premium' : '' %></p>
+    <button class="btn btn-success">
+      <%= link_to 'Shop Now', offer.url %>
+    </button>
+  </div>
 <% end %>
