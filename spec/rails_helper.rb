@@ -28,6 +28,8 @@ require 'spec_helper'
 
    config.use_transactional_fixtures = true
 
+   config.include Devise::Test::ControllerHelpers, type: :view
+
    config.include Devise::Test::IntegrationHelpers, type: :request
 
    config.infer_spec_type_from_file_location!

@@ -16,9 +16,10 @@ RSpec.describe "offers/index", type: :view do
 
   it "renders a list of offers" do
     render
-    assert_select "tr>td", text: "Renata".to_s, count: 1
-    assert_select "tr>td", text: "https://www.lemoney.com/".to_s, count: 1
-    assert_select "tr>td", text: "Description".to_s, count: 1
+    assert_select "tr>td", text: "Renata", count: 1
+    assert_select "tr>td", text: "https://www.lemoney.com/", count: 1
+    assert_select "tr>td", text: "Description", count: 1
     assert_select "tr>td", text: false.to_s, count: 1
+    assert_select "tr>td", text: Date.current.to_s, count: 1
   end
 end
