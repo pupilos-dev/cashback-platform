@@ -10,14 +10,9 @@ RSpec.describe OffersController, type: :routing do
       expect(get: "/offers/new").to route_to("offers#new")
     end
 
-    it "routes to #show" do
-      expect(get: "/offers/1").to route_to("offers#show", id: "1")
-    end
-
     it "routes to #edit" do
       expect(get: "/offers/1/edit").to route_to("offers#edit", id: "1")
     end
-
 
     it "routes to #create" do
       expect(post: "/offers").to route_to("offers#create")
