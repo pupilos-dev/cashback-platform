@@ -24,11 +24,10 @@ RSpec.describe Offer, type: :model do
 
   context "scope available_offers" do
     let!(:offer) { FactoryBot.create(:offer,
+                                     advertiser_name: FFaker::Company.name,
                                      starts_at: Date.current.advance(months: -1),
                                      ends_at: Date.current.advance(months: 1)) }
-    let!(:expired_offer) { FactoryBot.create(:offer,
-                                             starts_at: Date.current.advance(months: -2),
-                                             ends_at: Date.current.advance(months: -1))}
+    let!(:expired_offer) { FactoryBot.create(:offer_expired) }
 
     it "check available offers" do
       expect(Offer.available_offers).to include(offer)
@@ -36,6 +35,24 @@ RSpec.describe Offer, type: :model do
 
     it "check unavailable offers" do
       expect(Offer.available_offers).not_to include(expired_offer)
+    end
+  end
+
+  context "When offer is invalid" do
+    let!(:expired_offer) { FactoryBot.create(:offer_expired) }
+    let!(:offer_without_advertiser_name) { FactoryBot.build(:offer_without_advertiser_name) }
+    let!(:offer_with_invalid_url) { FactoryBot.build(:offer_with_invalid_url) }
+
+    it 'check expired offer' do
+      expect(Offer.all).to_not include(:offer_expired)
+    end
+
+    it 'check advertiser name' do
+      expect(offer_without_advertiser_name.valid?).to be_falsy
+    end
+
+    it 'check url' do
+      expect(offer_with_invalid_url.valid?).to be_falsy
     end
   end
 end

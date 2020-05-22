@@ -13,7 +13,7 @@ RSpec.describe "/offers", type: :request do
     FactoryBot.attributes_for(:offer, url: nil, member_id: admin.id)
   end
 
-  let(:admin) { FactoryBot.create(:member) }
+  let(:admin) { FactoryBot.create(:admin) }
   before { sign_in admin }
 
   describe "GET /index" do
