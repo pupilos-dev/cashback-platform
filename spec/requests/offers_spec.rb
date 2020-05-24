@@ -14,6 +14,7 @@ RSpec.describe "/offers", type: :request do
   end
 
   let(:admin) { FactoryBot.create(:admin) }
+
   before { sign_in admin }
 
   describe "GET /index" do
