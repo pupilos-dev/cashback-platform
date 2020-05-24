@@ -44,7 +44,7 @@ RSpec.describe Offer, type: :model do
     let!(:offer_with_invalid_url) { FactoryBot.build(:offer_with_invalid_url) }
 
     it 'check expired offer' do
-      expect(Offer.all).to_not include(:offer_expired)
+      expect(Offer.available_offers).to_not include(:expired_offer)
     end
 
     it 'check advertiser name' do

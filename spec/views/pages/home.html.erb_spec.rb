@@ -35,6 +35,22 @@ RSpec.describe "pages/home.html.erb", type: :view do
     end
   end
 
+  context "when exist premium offers and regular offers" do
+    before(:each) do
+      assign(:offers, [
+        FactoryBot.create(:offer),
+        FactoryBot.create(:offer_premium)
+      ])
+    end
+
+    it "check if there is just one premium offer" do
+      render
+
+      assert_select "div>p", text: "Premium", count: 1
+      assert_select "div>button", text: "Shop Now", count: 2
+    end
+  end
+
   context 'when member is logged in' do
     let(:member) { FactoryBot.create(:member) }
 
